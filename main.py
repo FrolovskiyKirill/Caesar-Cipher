@@ -4,16 +4,14 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
-def ceasar(text, shift_amount, direction):
+def ceasar(start_text, shift_amount, cipher_direction):
   converted_text = ""
+  if cipher_direction == 'decode':
+    shift_amount *= -1
   for letter in text:
     position = alphabet.index(letter)
-    if direction == 'encode':
-      new_position = position + shift_amount
-    elif direction == 'decode':
-      new_position = position - shift_amount
-    new_letter = alphabet[new_position]
-    converted_text += new_letter
-  print(f"The {direction}d text is {converted_text}")
+    new_position = position + shift_amount
+    converted_text += alphabet[new_position]
+  print(f"The {cipher_direction}d text is {converted_text}")
 
-ceasar(text=text, shift_amount=shift, direction=direction)
+ceasar(start_text=text, shift_amount=shift, cipher_direction=direction)
